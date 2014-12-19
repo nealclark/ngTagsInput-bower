@@ -5,7 +5,7 @@
  * Copyright (c) 2013-2014 Michael Benford
  * License: MIT
  *
- * Generated at 2014-12-19 14:30:56 -0800
+ * Generated at 2014-12-19 14:53:14 -0800
  */
 (function() {
 'use strict';
@@ -724,7 +724,11 @@ tagsInput.directive('tiAutosize', ["tagsInputConfig", function(tagsInputConfig) 
                     span.css('display', 'none');
                 }
 
-                element.css('width', width ? width + threshold + 'px' : '');
+                // get padding to ensure width doesn't cut of text
+                var paddingRight = parseInt(element.css('padding-right'), 10);
+                var paddingLeft = parseInt(element.css('padding-left'), 10);
+
+                element.css('width', width ? paddingLeft + width + paddingRight + threshold + 'px' : '');
 
                 return originalValue;
             };
